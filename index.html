@@ -43,7 +43,7 @@
 
       <div class="form" style="display: none;" id="add-joke-form">
         <label for="category">Category:</label>
-        <select name="category" id="category">
+        <select name="category" id="submit-category">
           <option value="programming">Programming</option>
           <option value="misc">Misc</option>
           <option value="dark">Dark</option>
@@ -51,15 +51,13 @@
           <option value="spooky">Spooky</option>
           <option value="christmas">Christmas</option>
         </select>
-        <input type="text"  name="name" value="" placeholder="Enter a joke..." class="input-text"/>
+        <input type="text"  name="name" placeholder="Enter a joke..." class="input-text" id="joke-input"/>
         <br>
-        <input type="submit" name="submit" value="Add joke" class="submit"/>
+        <input type="submit" name="submit" value="Add joke" class="submit" id="joke-submit"/>
       </div>
       
     </div>
-
-    <button class="button" id="add-joke-button">So, you think you're funny, huh? ( Add a joke )</button>
-
+    <div class="button" id="add-joke-button">So, you think you're funny, huh? ( Add a joke )</div>
     <!-- Joke card html and css example by https://codepen.io/prathkum/pen/JjbjEwR -->
     <div class="joke-section">
       <!-- Jokes Appended Here -->

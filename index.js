@@ -6,12 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const jokeSection = document.querySelector('.joke-section')
   const submit = document.querySelector('#submit')
   const categoriesNodeList = document.querySelectorAll('.checkbox')
+  const jokeSubmit = document.querySelector('#joke-submit')
 
+  // Event listener that hides the form
   addJokeButton.addEventListener('click', () => {
     addJoke = !addJoke;
     addJoke ? addJokeForm.style.display = "block" : addJokeForm.style.display = "none" 
   })
-
 
   // create array of category elements on the DOM and initiate an empty array to apply categories
   let categoriesArray = [...categoriesNodeList]
@@ -46,12 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(jokeObjs => {
       jokeObjs.jokes.forEach(jokeObj => {
         if (jokeObj.type === 'single') {
-          new SingleJoke(jokeObj.category, jokeObj.type, jokeObj.joke, jokeObj.lang, 
-            jokeObj.safe, jokeObj.flags, jokeObj.id).createSingleJokeCard()
+          createSingleJokeCard(jokeObj)
         } else {
-          new TwoPartJoke(jokeObj.category, jokeObj.type, jokeObj.setup, 
-            jokeObj.delivery, jokeObj.lang, jokeObj.safe, jokeObj.flags, 
-            jokeObj.id).createSingleJokeCard()
+          createTwoPartJokeCard(jokeObj)
         }
       });
     })
@@ -60,80 +58,91 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  class SingleJoke {
-    constructor(category,type,joke,lang,safe,flags,id) {
-      this.category = category
-      this.type = type
-      this.joke = joke
-      this.lang = lang
-      this.safe = safe
-      this.id = id
-      this.flags = flags
-    }
+  const createSingleJokeCard = (jokeObj) => {
+    const jokeContainer = document.createElement('div')
+    const jokeContent = document.createElement('div')
+    const jokeDetails = document.createElement('div')
+    const jokePunchline = document.createElement('h3')
+    const p = document.createElement('div')
 
-    createSingleJokeCard = () => {
-      const jokeContainer = document.createElement('div')
-      const jokeContent = document.createElement('div')
-      const jokeDetails = document.createElement('div')
-      const jokePunchline = document.createElement('h3')
-      const p = document.createElement('div')
-  
-      p.textContent = `Category: ${this.category} | Type: ${this.type} | ID: ${this.id}`
-      jokePunchline.textContent = this.joke
-  
-      p.classList.add('joke-category')
-      jokePunchline.classList.add('joke-punchline')
-      jokeContainer.classList.add('joke-container')
-      jokeContent.classList.add('joke-content')
-      jokeDetails.classList.add('joke-details')
-  
-      jokeDetails.appendChild(p)
-      jokeDetails.appendChild(jokePunchline)
-      jokeContent.appendChild(jokeDetails)
-      jokeContainer.appendChild(jokeContent)
-      jokeSection.appendChild(jokeContainer)
-    }
+    p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type}`
+    jokePunchline.textContent = jokeObj.joke
+
+    p.classList.add('joke-category')
+    jokePunchline.classList.add('joke-punchline')
+    jokeContainer.classList.add('joke-container')
+    jokeContent.classList.add('joke-content')
+    jokeDetails.classList.add('joke-details')
+
+    jokeDetails.appendChild(p)
+    jokeDetails.appendChild(jokePunchline)
+    jokeContent.appendChild(jokeDetails)
+    jokeContainer.appendChild(jokeContent)
+    jokeSection.appendChild(jokeContainer)
   }
 
-  class TwoPartJoke {
-    constructor(category,type,setup,delivery,lang,safe,flags,id) {
-      this.category = category
-      this.type = type
-      this.setup = setup
-      this.delivery = delivery
-      this.lang = lang
-      this.safe = safe
-      this.id = id
-      this.flags = flags
+  const createTwoPartJokeCard = (jokeObj) => {
+    const jokeContainer = document.createElement('div')
+    const jokeContent = document.createElement('div')
+    const jokeDetails = document.createElement('div')
+    const jokeSetup = document.createElement('h3')
+    const jokePunchline = document.createElement('h3')
+    const p = document.createElement('div')
+
+    p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type} | ID: ${jokeObj.id}`
+    jokeSetup.textContent = jokeObj.setup
+    jokePunchline.textContent = jokeObj.delivery
+
+    p.classList.add('joke-category')
+    jokeSetup.classList.add('joke-setup')
+    jokePunchline.classList.add('joke-punchline')
+    jokeContainer.classList.add('joke-container')
+    jokeContent.classList.add('joke-content')
+    jokeDetails.classList.add('joke-details')
+
+    jokeDetails.appendChild(p)
+    jokeDetails.append(jokeSetup)
+    jokeDetails.appendChild(jokePunchline)
+    jokeContent.appendChild(jokeDetails)
+    jokeContainer.appendChild(jokeContent)
+    jokeSection.appendChild(jokeContainer)
+  }
+
+  const submitData = (e) => {
+    e.preventDefault()
+    const submitCategory = document.querySelector('#submit-category').value
+    const jokeInput = document.querySelector('#joke-input').value
+    
+    const configurationObject = {
+      method:'POST',
+      headers: {
+        "Content-Type": 'application/json',
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        category: submitCategory,
+        joke: jokeInput,
+        type: 'single',
+        lang: "en",
+        safe: true,
+        flags: {
+          "nsfw": false,
+          "religious": false,
+          "political": false,
+          "racist": false,
+          "sexist": false,
+          "explicit": false
+        },
+      })
     }
 
-    createSingleJokeCard = () => {
-      const jokeContainer = document.createElement('div')
-      const jokeContent = document.createElement('div')
-      const jokeDetails = document.createElement('div')
-      const jokeSetup = document.createElement('h3')
-      const jokePunchline = document.createElement('h3')
-      const p = document.createElement('div')
-  
-      p.textContent = `Category: ${this.category} | Type: ${this.type} | ID: ${this.id}`
-      jokeSetup.textContent = this.setup
-      jokePunchline.textContent = this.delivery
-  
-      p.classList.add('joke-category')
-      jokeSetup.classList.add('joke-setup')
-      jokePunchline.classList.add('joke-punchline')
-      jokeContainer.classList.add('joke-container')
-      jokeContent.classList.add('joke-content')
-      jokeDetails.classList.add('joke-details')
-  
-      jokeDetails.appendChild(p)
-      jokeDetails.append(jokeSetup)
-      jokeDetails.appendChild(jokePunchline)
-      jokeContent.appendChild(jokeDetails)
-      jokeContainer.appendChild(jokeContent)
-      jokeSection.appendChild(jokeContainer)
-    }
+    fetch("http://localhost:3000/jokes", configurationObject)
+    .then(resp => resp.json())
+    .then(createSingleJokeCard)
+
   }
+
+  jokeSubmit.addEventListener('click', submitData)
 
   // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
   function removeAllChildNodes(parent) {
