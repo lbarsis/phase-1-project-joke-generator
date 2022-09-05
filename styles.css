@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Bangers', cursive;
+}
+
+body {
+  background: #f2f2f2;
+}
+
+h1 {
+  font-weight: 600;
+  text-align: center;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+.main {
+  margin-top: 1%;
+}
+
+#page-title {
+  color: white;
+  font-size: 4em;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  letter-spacing: .3rem;
+}
+
+.form-container {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1%;
+  border-style: none;
+  padding: 1% 10% 1% 10%;
+  /* background-color: #87CEFA; */
+  background: rgb(135,206,250);
+  background: linear-gradient(45deg, rgba(135,206,250,1) 0%, rgba(176,196,222,0.76234243697479) 100%);
+  border-radius: 5px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  letter-spacing: .15rem;
+}
+
+#search {
+  border-style: none;
+  padding: 1%;
+  margin-bottom: 1%;
+  font-size: 2rem;
+}
+
+#submit {
+  padding: 5px 15px 5px 15px;
+  font-size: 2rem;
+}
+
+.search-for-a-joke {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+#form {
+  border-style: none;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  color: white;
+}
+
+#form input {
+  margin: 0px 0px 0px 10px;
+}
+
+#form label {
+  position: relative;
+  right: 8px;
+}
+
+/* <!-- Below this point is where the joke card css starts
+        html and css example by https://codepen.io/prathkum/pen/JjbjEwR --> */
+
+.joke-container  {
+  /* position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 600px; */
+  /* border-style: solid; */
+  background: #f2f2f2;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  /* overflow: hidden; */
+  border-radius: 20px;
+  /* cursor: pointer; */
+  box-shadow: 0 0 20px 8px #d0d0d0;
+  margin: auto;
+  margin-top: 1%;
+  border-style: none;
+}
+
+.joke-content {
+  /* position: absolute; */
+  /* top: 50%; */
+  width: 100%;
+  /* transform: translatey(-50%); */
+  text-align: justify;
+  color: black;
+  font-family: 'Merriweather', serif;
+  padding: 25px;
+}
+
+.joke-category {
+  border-bottom: 2px solid lightskyblue;
+}
+
+/* .flap {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.flap::before {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  background: white;
+  background-position: 100px;
+  background-repeat: no-repeat;
+  transition: 1s;
+}
+
+.flap::after {
+  position: absolute;
+  content: "";
+  height: 100%;
+  width: 50%;
+  right: 0;
+  background: white;
+  background-position: -200px;
+  background-repeat: no-repeat;
+  transition: 1s;
+}
+
+.joke-container:hover .flap::after {
+  transform: translatex(300px);
+}
+
+.joke-container:hover .flap::before{
+  transform: translatex(-300px);
+} */
