@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const submit = document.querySelector('#submit')
   const categoriesNodeList = document.querySelectorAll('.checkbox')
   const jokeSubmit = document.querySelector('#joke-submit')
+  const localUrl = "http://localhost:3000/jokes"
 
   // Event listener that hides the form
   addJokeButton.addEventListener('click', () => {
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const search = document.querySelector('#search').value
     
-    fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=10`)
+    fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
     .then(resp => resp.json())
     .then(jokeObjs => {
       jokeObjs.jokes.forEach(jokeObj => {
@@ -56,6 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(() => {
       alert('Sorry, no jokes were found.')
     })
+
+    fetch(localUrl)
+    .then(resp => resp.json())
+    .then(jokeObjs => {
+      // Implement at least one joke from the local database into the results
+      const randomId = Math.floor(Math.random() * jokeObjs.length) + 1;
+      jokeObjs.forEach(jokeObj => {
+        if (jokeObj.id === randomId) {
+          createSingleJokeCard(jokeObj)
+        } 
+      })
+    })
+
   })
 
   const createSingleJokeCard = (jokeObj) => {
@@ -89,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const jokePunchline = document.createElement('h3')
     const p = document.createElement('div')
 
-    p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type} | ID: ${jokeObj.id}`
+    p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type}`
     jokeSetup.textContent = jokeObj.setup
     jokePunchline.textContent = jokeObj.delivery
 
