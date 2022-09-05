@@ -2,25 +2,37 @@ document.addEventListener('DOMContentLoaded', () => {
   const baseUrl = "https://v2.jokeapi.dev/joke/"
   const jokeSection = document.querySelector('.joke-section')
   const submit = document.querySelector('#submit')
-  const programming = document.querySelector('#programming')
+  const categoriesNodeList = document.querySelectorAll('.checkbox')
 
-  let programmingValue = false
-  programming.addEventListener('click', e => {
-    if (programmingValue) {
-      programmingValue = false
-    } else {
-      programmingValue = true
-    }
-    
-    console.log(programmingValue)
-  })
+  // create array of category elements on the DOM and initiate an empty array to apply categories
+  let categoriesArray = [...categoriesNodeList]
+  let categories = []
+  let urlCategories = 'any'
+
+  // Add event listener to all categories and apply them to the format accepted by the API (urlCategories)
+  for (let category of categoriesArray) {
+    category.addEventListener('click', () => {
+      const index = categories.indexOf(category.value)
+      categories.includes(category.value) ? categories.splice(index,1) : categories.push(category.value) 
+      urlCategories = categories.join(',')
+
+      // this if statement changes the urlCategories back to it's initial state if the user
+      // checks off categories then decides to remove them
+      if (categories.length === 0) {
+        urlCategories = 'any'
+      }
+      return urlCategories
+    })
+  }
 
   submit.addEventListener('click', e => {
     e.preventDefault()
 
+    removeAllChildNodes(jokeSection)
+
     const search = document.querySelector('#search').value
     
-    fetch(`${baseUrl}/any?safe-mode&contains=${search}&amount=10`)
+    fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=10`)
     .then(resp => resp.json())
     .then(jokeObjs => {
       jokeObjs.jokes.forEach(jokeObj => {
@@ -30,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
           new TwoPartJoke(jokeObj.category, jokeObj.type, jokeObj.setup, jokeObj.delivery, jokeObj.lang, jokeObj.safe, jokeObj.flags, jokeObj.id).createSingleJokeCard()
         }
       });
+    })
+    .catch(error => {
+      alert(`Sorry, no jokes were found. Error: ${error}`)
     })
   })
 
@@ -105,6 +120,13 @@ document.addEventListener('DOMContentLoaded', () => {
       jokeContent.appendChild(jokeDetails)
       jokeContainer.appendChild(jokeContent)
       jokeSection.appendChild(jokeContainer)
+    }
+  }
+
+  // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
   }
 
