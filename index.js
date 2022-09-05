@@ -1,8 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+  let addJoke = false
+  const addJokeForm = document.querySelector('#add-joke-form')
+  const addJokeButton = document.querySelector('#add-joke-button')
   const baseUrl = "https://v2.jokeapi.dev/joke/"
   const jokeSection = document.querySelector('.joke-section')
   const submit = document.querySelector('#submit')
   const categoriesNodeList = document.querySelectorAll('.checkbox')
+
+  addJokeButton.addEventListener('click', () => {
+    addJoke = !addJoke;
+    addJoke ? addJokeForm.style.display = "block" : addJokeForm.style.display = "none" 
+  })
+
 
   // create array of category elements on the DOM and initiate an empty array to apply categories
   let categoriesArray = [...categoriesNodeList]
@@ -37,14 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(jokeObjs => {
       jokeObjs.jokes.forEach(jokeObj => {
         if (jokeObj.type === 'single') {
-          new SingleJoke(jokeObj.category, jokeObj.type, jokeObj.joke, jokeObj.lang, jokeObj.safe, jokeObj.flags, jokeObj.id).createSingleJokeCard()
+          new SingleJoke(jokeObj.category, jokeObj.type, jokeObj.joke, jokeObj.lang, 
+            jokeObj.safe, jokeObj.flags, jokeObj.id).createSingleJokeCard()
         } else {
-          new TwoPartJoke(jokeObj.category, jokeObj.type, jokeObj.setup, jokeObj.delivery, jokeObj.lang, jokeObj.safe, jokeObj.flags, jokeObj.id).createSingleJokeCard()
+          new TwoPartJoke(jokeObj.category, jokeObj.type, jokeObj.setup, 
+            jokeObj.delivery, jokeObj.lang, jokeObj.safe, jokeObj.flags, 
+            jokeObj.id).createSingleJokeCard()
         }
       });
     })
-    .catch(error => {
-      alert(`Sorry, no jokes were found. Error: ${error}`)
+    .catch(() => {
+      alert('Sorry, no jokes were found.')
     })
   })
 

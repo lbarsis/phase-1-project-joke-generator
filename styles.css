@@ -28,7 +28,7 @@ h3 {
 }
 
 .form-container {
-  width: fit-content;
+  max-width: fit-content;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1%;
@@ -50,9 +50,26 @@ h3 {
   font-size: 2rem;
 }
 
-#submit {
+.button {
   padding: 5px 15px 5px 15px;
   font-size: 2rem;
+}
+
+#add-joke {
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin: 1% auto 1% auto;
+  background: none;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  /* background: linear-gradient(45deg, rgba(135,206,250,1) 0%, rgba(176,196,222,0.76234243697479) 100%); */
+  padding: 15px 10px 15px 10px;
+}
+
+#add-joke:hover {
+  color: darkgray;
+  cursor: pointer;
 }
 
 .search-for-a-joke {
@@ -60,7 +77,7 @@ h3 {
   font-size: 2rem;
 }
 
-#form {
+.form {
   border-style: none;
   width: 100%;
   margin-left: auto;
@@ -81,24 +98,14 @@ h3 {
   right: 8px;
 }
 
-/* <!-- Below this point is where the joke card css starts
-        html and css example by https://codepen.io/prathkum/pen/JjbjEwR --> */
+/* Below this point is where the joke card css starts */
 
 .joke-container  {
-  /* position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  height: 400px;
-  width: 600px; */
-  /* border-style: solid; */
   background: #f2f2f2;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  /* overflow: hidden; */
   border-radius: 20px;
-  /* cursor: pointer; */
   box-shadow: 0 0 20px 8px #d0d0d0;
   margin: auto;
   margin-top: 1%;
@@ -106,10 +113,7 @@ h3 {
 }
 
 .joke-content {
-  /* position: absolute; */
-  /* top: 50%; */
   width: 100%;
-  /* transform: translatey(-50%); */
   text-align: justify;
   color: black;
   font-family: 'Merriweather', serif;

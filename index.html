@@ -20,12 +20,12 @@
 
     <div class="form-container">
       <h1 id="page-title">WANT TO HEAR A JOKE?</h1>
-      <form action="submit" id="form">
+      <form action="submit" class="form">
         <div class="search-for-a-joke">
           <label for="form">Search:</label>
           <input type="text" name="search" id="search" placeholder="Search for a joke...">
-          <input type="submit" id="submit">
-        </div>
+          <input type="submit" class="button" id="submit">
+        </div><br>
         <label for="form">Category: </label>
         <input class="checkbox" type="checkbox" name="programming" id="programming" value="programming">
         <label for="programming">Programming</label>
@@ -40,7 +40,25 @@
         <input class="checkbox" type="checkbox" name="christmas" id="christmas" value="christmas">
         <label for="christmas">Christmas</label>
       </form>
+
+      <div class="form" style="display: none;" id="add-joke-form">
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+          <option value="programming">Programming</option>
+          <option value="misc">Misc</option>
+          <option value="dark">Dark</option>
+          <option value="pun">Pun</option>
+          <option value="spooky">Spooky</option>
+          <option value="christmas">Christmas</option>
+        </select>
+        <input type="text"  name="name" value="" placeholder="Enter a joke..." class="input-text"/>
+        <br>
+        <input type="submit" name="submit" value="Add joke" class="submit"/>
+      </div>
+      
     </div>
+
+    <button class="button" id="add-joke-button">So, you think you're funny, huh? ( Add a joke )</button>
 
     <!-- Joke card html and css example by https://codepen.io/prathkum/pen/JjbjEwR -->
     <div class="joke-section">
