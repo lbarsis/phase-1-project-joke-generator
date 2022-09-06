@@ -63,29 +63,33 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
     .catch(() => {
-      alert('Sorry, no jokes were found.')
+      alert('Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches. Otherwise, enjoy this random joke!')
     })
 
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
       // Implement at least one joke from the local database into the results
-      const randomId = Math.floor(Math.random() * jokeObjs.length) + 1;
+      let randomId = Math.floor(Math.random() * jokeObjs.length) + 1
+      let idArr = []
       jokeObjs.forEach(jokeObj => {
-        if (categories.length === 0) {
+        if (categories.length === 0 && search.length === 0) {
           if (jokeObj.id === randomId) {
             createSingleJokeCard(jokeObj)
           }
-        } else {
-          if (categories.includes(jokeObj.category)) {
-            console.log(jokeObj)
-          }
+        } 
+        
+        if(categories.includes(jokeObj.category) || (jokeObj.joke.includes(search) && search.length !== 0)){
+            idArr.push(jokeObj)
         }
       })
+
+      // generate a random joke from the list that meets the filter criteria 
+      if (idArr.length > 0) {
+        randomId = Math.floor(Math.random() * idArr.length)
+        createSingleJokeCard(idArr[randomId])
+      }
     })
-
-    
-
   })
 
   const createSingleJokeCard = (jokeObj) => {
