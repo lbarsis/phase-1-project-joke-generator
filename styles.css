@@ -21,6 +21,17 @@ h3 {
   width: 100%;
 }
 
+#joke-input {
+  display: inline-block;
+  border-style: none;
+  padding: 1%;
+  margin-bottom: 1%;
+  font-size: 1.5rem;
+}
+#submit-category {
+  font-size: 1.5rem;
+}
+
 #page-title {
   color: white;
   font-size: 4em;

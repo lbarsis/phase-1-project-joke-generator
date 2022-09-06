@@ -31,8 +31,6 @@
         <label for="programming">Programming</label>
         <input class="checkbox" type="checkbox" name="misc" id="misc" value="misc">
         <label for="misc">Misc</label>
-        <input class="checkbox" type="checkbox" name="dark" id="dark" value="dark">
-        <label for="dark">Dark</label>
         <input class="checkbox" type="checkbox" name="pun" id="pun" value="pun">
         <label for="pun">Pun</label>
         <input class="checkbox" type="checkbox" name="spooky" id="spooky" value="spooky">
@@ -42,8 +40,9 @@
       </form>
 
       <div class="form" style="display: none;" id="add-joke-form">
+        <p>Enter setup and punchline into the field below:</p>
         <label for="category">Category:</label>
-        <select name="category" id="submit-category">
+        <select name="category" id="submit-category" class="button">
           <option value="programming">Programming</option>
           <option value="misc">Misc</option>
           <option value="dark">Dark</option>
@@ -55,10 +54,8 @@
         <br>
         <input type="submit" name="submit" value="Add joke" class="submit" id="joke-submit"/>
       </div>
-      
     </div>
     <div class="button" id="add-joke-button">So, you think you're funny, huh? ( Add a joke )</div>
-    <!-- Joke card html and css example by https://codepen.io/prathkum/pen/JjbjEwR -->
     <div class="joke-section">
       <!-- Jokes Appended Here -->
     </div>

@@ -15,6 +15,182 @@
         "explicit": false
       },
       "id": 1
+    },
+    {
+      "category": "pun",
+      "joke": "What's 90 degrees but covered with ice? The North and South Poles.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 2
+    },
+    {
+      "category": "pun",
+      "joke": "What happened when the blue ship and the red ship collided at sea? Their crews were marooned.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 3
+    },
+    {
+      "category": "pun",
+      "joke": "What are the strongest days of the week? Saturday and Sunday. All the others are weekdays.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 4
+    },
+    {
+      "category": "pun",
+      "joke": "Q. How did the programmer die in the shower? A. He read the shampoo bottle instructions: Lather. Rinse. Repeat.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 5
+    },
+    {
+      "category": "programming",
+      "joke": "Why do programmers always mix up Halloween and Christmas? Because Oct 31 equals Dec 25.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 6
+    },
+    {
+      "category": "programming",
+      "joke": "What vegetable is cool, but not that cool? Radish.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 7
+    },
+    {
+      "category": "programming",
+      "joke": "How do you measure the mass of an influencer's following? By Instagrams!",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 8
+    },
+    {
+      "category": "programming",
+      "joke": "Why can't a leopard hide? He's always spotted.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 9
+    },
+    {
+      "category": "pun",
+      "joke": "Did you hear about the claustrophobic astronaut? He just wanted a bit more space.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 10
+    },
+    {
+      "category": "programming",
+      "joke": "How you fix a broken pumpkin? With a pumpkin patch.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 11
+    },
+    {
+      "category": "programming",
+      "joke": "Stop looking for the perfect match; use a lighter.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 12
     }
   ]
 }

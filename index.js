@@ -12,7 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Event listener that hides the form
   addJokeButton.addEventListener('click', () => {
     addJoke = !addJoke;
-    addJoke ? addJokeForm.style.display = "block" : addJokeForm.style.display = "none" 
+    if (addJoke) {
+      addJokeForm.style.display = "block"
+      addJokeButton.textContent = 'Nevermind.'
+    } else {
+      addJokeForm.style.display = "none" 
+      addJokeButton.textContent = 'So, you think you\'re funny, huh? ( Add a joke )'
+      
+    }
+     
   })
 
   // create array of category elements on the DOM and initiate an empty array to apply categories
@@ -64,11 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // Implement at least one joke from the local database into the results
       const randomId = Math.floor(Math.random() * jokeObjs.length) + 1;
       jokeObjs.forEach(jokeObj => {
-        if (jokeObj.id === randomId) {
-          createSingleJokeCard(jokeObj)
-        } 
+        if (categories.length === 0) {
+          if (jokeObj.id === randomId) {
+            createSingleJokeCard(jokeObj)
+          }
+        } else {
+          if (categories.includes(jokeObj.category)) {
+            console.log(jokeObj)
+          }
+        }
       })
     })
+
+    
 
   })
 
@@ -125,8 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitData = (e) => {
     e.preventDefault()
     const submitCategory = document.querySelector('#submit-category').value
-    const jokeInput = document.querySelector('#joke-input').value
-    
+    let jokeInput = document.querySelector('#joke-input').value
+
     const configurationObject = {
       method:'POST',
       headers: {
@@ -153,7 +169,6 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch("http://localhost:3000/jokes", configurationObject)
     .then(resp => resp.json())
     .then(createSingleJokeCard)
-
   }
 
   jokeSubmit.addEventListener('click', submitData)
