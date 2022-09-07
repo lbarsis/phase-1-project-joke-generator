@@ -7,4 +7,4 @@ The idea of this project is to allow users to search the public API for jokes th
 Once the page loads, you will see a search bar with a series of filter. The search bare and filters are of course optional, but may help narrow down the results if you are looking for a specific type of joke. Once the filters are input, click the search button. This will return a list of 10 random jokes that meet your search criteria. 
 
 ## Examples
-![Example](images/video1398217342.gif)
+![Example](./images/video1398217342.gif)
