@@ -13,3 +13,10 @@ To close the form section, click the 'Nevermind.' button and the area will dissa
 
 ## Examples
 ![Example](./images/video1398217342.gif)
+
+### Disclaimer
+Due to API limitations of adding jokes, this website runs off two databases. The main search function organizes and searches from the joke API listed in the summary. Nine of the ten displayed jokes are displayed from this database.
+
+When a user adds a joke via the form, it is added to a local database. Once the joke is added to the local database, it then becomes searchable along with the oringal API. However, only one joke is displayed at a time from the local database to account for the vast difference in size between the two. 
+
+Due to multiple databases being used, you will sometimes see an error that states: 'Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches.' This means that no jokes were found in the API database, however, it has not yet searched the local database. If a joke is found in the local database, it will be displayed as usual. If nothing is displayed after this warning, that means no joke matches the search criteria in the local database either.
