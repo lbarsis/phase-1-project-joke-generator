@@ -84,14 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } 
       })
 
-      const jokeContent = document.querySelectorAll('.joke-content')
-      console.log(jokeContent)
       // generate a random joke from the list that meets the filter criteria 
       if (idArr.length > 0) {
         randomId = Math.floor(Math.random() * idArr.length)
         createSingleJokeCard(idArr[randomId])
-      } else if (jokeContent.length === 0) {
-        alert('Sorry, no jokes found in the local database!')
       }
     })
 
@@ -192,5 +188,4 @@ document.addEventListener('DOMContentLoaded', () => {
         parent.removeChild(parent.firstChild);
     }
   }
-
 })

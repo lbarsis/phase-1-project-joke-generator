@@ -207,6 +207,22 @@
         "explicit": false
       },
       "id": 13
+    },
+    {
+      "category": "pun",
+      "joke": "How do you teach kids about taxes? Eat 38% of their ice cream.",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 14
     }
   ]
 }
