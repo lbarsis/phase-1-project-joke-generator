@@ -223,6 +223,22 @@
         "explicit": false
       },
       "id": 14
+    },
+    {
+      "category": "pun",
+      "joke": "What do you get when you mix a squid with a ninja? Disappearing ink",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 15
     }
   ]
 }

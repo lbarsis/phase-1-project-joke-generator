@@ -1,7 +1,7 @@
 # Joke Generator Summary
 This project searches through the public API, https://sv443.net/jokeapi/v2/, and returns 10 random, safe-for-work jokes.
 
-## Use of Application
+## Description
 The idea of this project is to allow users to search the public API for jokes that can be shared in public spaces. Users will have the option to apply filters that include category and search for specific keywords in the description.
 
 Once the page loads, you will see a search bar with a series of filter. The search bar and filters are of course optional, but may help narrow down the results if you are looking for a specific type of joke. Once the filters are input, click the search button. This will return a list of 10 random jokes that meet your search criteria. 
@@ -13,6 +13,11 @@ To close the form section, click the 'Nevermind.' button and the area will dissa
 
 ## Examples
 ![Example](./images/video1398217342.gif)
+
+## Installation
+1. Clone the repo:
+`git clone https://github.com/your_username_/Project-Name.git`
+2. Run `explorer.exe index.html`
 
 ### Disclaimer
 Due to API limitations of adding jokes, this website runs off two databases. The main search function organizes and searches from the joke API listed in the summary. Nine of the ten displayed jokes are displayed from this database.
