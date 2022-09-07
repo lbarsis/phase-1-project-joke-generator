@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  submit.addEventListener('submit', e => {
+  // Event listener that searches for jokes in the API and local databases
+  submit.addEventListener('click', e => {
     e.preventDefault()
 
     removeAllChildNodes(jokeSection)
@@ -97,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     search.value = ''
   })
 
+  // Creates joke cards that have the type 'single'
   const createSingleJokeCard = (jokeObj) => {
     const jokeContainer = document.createElement('div')
     const jokeContent = document.createElement('div')
@@ -120,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     jokeSection.appendChild(jokeContainer)
   }
 
+  // Creates joke cards that have the type 'twopart'
   const createTwoPartJokeCard = (jokeObj) => {
     const jokeContainer = document.createElement('div')
     const jokeContent = document.createElement('div')
@@ -147,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     jokeSection.appendChild(jokeContainer)
   }
 
+  // Adds jokes to the local database 
   const submitData = (e) => {
     e.preventDefault()
     const submitCategory = document.querySelector('#submit-category').value
