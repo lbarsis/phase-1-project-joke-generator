@@ -83,7 +83,7 @@ h3 {
 
 #add-joke-button:hover {
   color: darkgray;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .search-for-a-joke {

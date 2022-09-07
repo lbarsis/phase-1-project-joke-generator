@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const addJokeButton = document.querySelector('#add-joke-button')
   const baseUrl = "https://v2.jokeapi.dev/joke/"
   const jokeSection = document.querySelector('.joke-section')
-  const submit = document.querySelector('#submit')
+  const submit = document.querySelector('#search-form')
   const categoriesNodeList = document.querySelectorAll('.checkbox')
-  const jokeSubmit = document.querySelector('#joke-submit')
+  // const jokeSubmit = document.querySelector('#joke-submit')
   const localUrl = "http://localhost:3000/jokes"
 
   // Event listener that hides the form
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Event listener that searches for jokes in the API and local databases
-  submit.addEventListener('click', e => {
+  submit.addEventListener('submit', e => {
     e.preventDefault()
 
     removeAllChildNodes(jokeSection)
@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
         randomId = Math.floor(Math.random() * idArr.length)
         createSingleJokeCard(idArr[randomId])
       }
+
+      submit.reset()
     })
 
     search.value = ''
@@ -178,9 +180,19 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch("http://localhost:3000/jokes", configurationObject)
     .then(resp => resp.json())
     .then(createSingleJokeCard)
+
+    addJokeForm.reset()
   }
 
-  jokeSubmit.addEventListener('click', submitData)
+  // changes cursor to pointer
+  const mouseOver = (element) => {
+    // element.style.color = "darkgray";
+    element.style.cursor = "pointer";
+  }
+
+  addJokeButton.addEventListener('mouseover', mouseOver(addJokeButton))
+
+  addJokeForm.addEventListener('submit', submitData)
 
   // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
   function removeAllChildNodes(parent) {
