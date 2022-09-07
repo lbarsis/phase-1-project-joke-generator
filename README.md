@@ -11,13 +11,20 @@ To add a joke, simply click the "So, you think you're funny, huh?" button and fi
 
 To close the form section, click the 'Nevermind.' button and the area will dissapear to it's original size.
 
-## Examples
+## Installation
+Clone the repository: `git clone git@github.com:lbarsis/phase-1-project-joke-generator.git`
+
+## Usage
+Run `explorer.exe index.html` inside the terminal.
+
+### Examples
 ![Example](./images/video1398217342.gif)
 
-## Installation
-1. Clone the repo:
-`git clone https://github.com/your_username_/Project-Name.git`
-2. Run `explorer.exe index.html`
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Contributing
+
 
 ### Disclaimer
 Due to API limitations of adding jokes, this website runs off two databases. The main search function organizes and searches from the joke API listed in the summary. Nine of the ten displayed jokes are displayed from this database.
