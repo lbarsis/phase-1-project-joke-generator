@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Initiate all variables
   let addJoke = false
   const addJokeForm = document.querySelector('#add-joke-form')
   const addJokeButton = document.querySelector('#add-joke-button')
@@ -18,9 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       addJokeForm.style.display = "none" 
       addJokeButton.textContent = 'So, you think you\'re funny, huh? ( Add a joke )'
-      
     }
-     
   })
 
   // create array of category elements on the DOM and initiate an empty array to apply categories
@@ -44,13 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  submit.addEventListener('click', e => {
+  submit.addEventListener('submit', e => {
     e.preventDefault()
 
     removeAllChildNodes(jokeSection)
 
     const search = document.querySelector('#search').value
     
+    // Fetch from API
     fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
     .then(resp => resp.json())
     .then(jokeObjs => {
@@ -63,9 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })
     .catch(() => {
-      alert('Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches. Otherwise, enjoy this random joke!')
+      alert('Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches.')
     })
 
+    // Fetch from local database
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
@@ -73,23 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
       let randomId = Math.floor(Math.random() * jokeObjs.length) + 1
       let idArr = []
       jokeObjs.forEach(jokeObj => {
-        if (categories.length === 0 && search.length === 0) {
-          if (jokeObj.id === randomId) {
-            createSingleJokeCard(jokeObj)
-          }
-        } 
-        
-        if(categories.includes(jokeObj.category) || (jokeObj.joke.includes(search) && search.length !== 0)){
+        // If no parameters ar entered
+        if (categories.length === 0 && search.length === 0 && jokeObj.id === randomId) {
+          createSingleJokeCard(jokeObj)
+          // If parameters are entered
+        } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0)){
             idArr.push(jokeObj)
-        }
+        } 
       })
 
+      const jokeContent = document.querySelectorAll('.joke-content')
+      console.log(jokeContent)
       // generate a random joke from the list that meets the filter criteria 
       if (idArr.length > 0) {
         randomId = Math.floor(Math.random() * idArr.length)
         createSingleJokeCard(idArr[randomId])
+      } else if (jokeContent.length === 0) {
+        alert('Sorry, no jokes found in the local database!')
       }
     })
+
+    search.value = ''
   })
 
   const createSingleJokeCard = (jokeObj) => {
