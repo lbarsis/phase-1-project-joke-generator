@@ -12,7 +12,11 @@ To add a joke, simply click the "So, you think you're funny, huh?" button and fi
 To close the form section, click the 'Nevermind.' button and the area will dissapear to it's original size.
 
 ## Installation
-Clone the repository: `git clone git@github.com:lbarsis/phase-1-project-joke-generator.git`
+1. Copy the repository: `git@github.com:lbarsis/phase-1-project-joke-generator.git`
+![Clone-Repository](./images/clone-repo-2_Trim.gif)
+
+2. Open up the terminal and clone the repository into the desired directory using `git clone git@github.com:lbarsis/phase-1-project-joke-generator.git`
+![git-clone](./images/git-clone.gif)
 
 ## Usage
 Run `explorer.exe index.html` inside the terminal.
