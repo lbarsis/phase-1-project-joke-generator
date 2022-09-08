@@ -10,18 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // const jokeSubmit = document.querySelector('#joke-submit')
   const localUrl = "http://localhost:3000/jokes"
 
-  // Event listener that hides the form
-  addJokeButton.addEventListener('click', () => {
-    addJoke = !addJoke;
-    if (addJoke) {
-      addJokeForm.style.display = "block"
-      addJokeButton.textContent = 'Nevermind.'
-    } else {
-      addJokeForm.style.display = "none" 
-      addJokeButton.textContent = 'So, you think you\'re funny, huh? ( Add a joke )'
-    }
-  })
-
   // create array of category elements on the DOM and initiate an empty array to apply categories
   let categoriesArray = [...categoriesNodeList]
   let categories = []
@@ -55,13 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
     .then(resp => resp.json())
     .then(jokeObjs => {
-      jokeObjs.jokes.forEach(jokeObj => {
-        if (jokeObj.type === 'single') {
-          createSingleJokeCard(jokeObj)
-        } else {
-          createTwoPartJokeCard(jokeObj)
-        }
-      });
+      jokeObjs.jokes.forEach(jokeObj => createJokeCard(jokeObj));
     })
     .catch(() => {
       alert('Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches.')
@@ -77,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       jokeObjs.forEach(jokeObj => {
         // If no parameters ar entered
         if (categories.length === 0 && search.length === 0 && jokeObj.id === randomId) {
-          createSingleJokeCard(jokeObj)
+          createJokeCard(jokeObj)
           // If parameters are entered
         } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0)){
             idArr.push(jokeObj)
@@ -87,51 +69,25 @@ document.addEventListener('DOMContentLoaded', () => {
       // generate a random joke from the list that meets the filter criteria 
       if (idArr.length > 0) {
         randomId = Math.floor(Math.random() * idArr.length)
-        createSingleJokeCard(idArr[randomId])
+        createJokeCard(idArr[randomId])
       }
-
-      submit.reset()
     })
-
-    search.value = ''
+    submit.reset()
   })
 
   // Creates joke cards that have the type 'single'
-  const createSingleJokeCard = (jokeObj) => {
+  const createJokeCard = (jokeObj) => {
     const jokeContainer = document.createElement('div')
     const jokeContent = document.createElement('div')
     const jokeDetails = document.createElement('div')
     const jokePunchline = document.createElement('h3')
     const p = document.createElement('div')
-
-    p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type}`
-    jokePunchline.textContent = jokeObj.joke
-
-    p.classList.add('joke-category')
-    jokePunchline.classList.add('joke-punchline')
-    jokeContainer.classList.add('joke-container')
-    jokeContent.classList.add('joke-content')
-    jokeDetails.classList.add('joke-details')
-
-    jokeDetails.appendChild(p)
-    jokeDetails.appendChild(jokePunchline)
-    jokeContent.appendChild(jokeDetails)
-    jokeContainer.appendChild(jokeContent)
-    jokeSection.appendChild(jokeContainer)
-  }
-
-  // Creates joke cards that have the type 'twopart'
-  const createTwoPartJokeCard = (jokeObj) => {
-    const jokeContainer = document.createElement('div')
-    const jokeContent = document.createElement('div')
-    const jokeDetails = document.createElement('div')
     const jokeSetup = document.createElement('h3')
-    const jokePunchline = document.createElement('h3')
-    const p = document.createElement('div')
 
     p.textContent = `Category: ${jokeObj.category} | Type: ${jokeObj.type}`
     jokeSetup.textContent = jokeObj.setup
-    jokePunchline.textContent = jokeObj.delivery
+
+    jokeObj.type === 'twopart' ? jokePunchline.textContent = jokeObj.delivery : jokePunchline.textContent = jokeObj.joke
 
     p.classList.add('joke-category')
     jokeSetup.classList.add('joke-setup')
@@ -179,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetch("http://localhost:3000/jokes", configurationObject)
     .then(resp => resp.json())
-    .then(createSingleJokeCard)
+    .then(createJokeCard)
 
     addJokeForm.reset()
   }
@@ -190,8 +146,19 @@ document.addEventListener('DOMContentLoaded', () => {
     element.style.cursor = "pointer";
   }
 
-  addJokeButton.addEventListener('mouseover', mouseOver(addJokeButton))
+    // Event listener that hides the form
+  addJokeButton.addEventListener('click', () => {
+    addJoke = !addJoke;
+    if (addJoke) {
+      addJokeForm.style.display = "block"
+      addJokeButton.textContent = 'Nevermind.'
+    } else {
+      addJokeForm.style.display = "none" 
+      addJokeButton.textContent = 'So, you think you\'re funny, huh? ( Add a joke )'
+    }
+  })
 
+  addJokeButton.addEventListener('mouseover', mouseOver(addJokeButton))
   addJokeForm.addEventListener('submit', submitData)
 
   // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
