@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const jokeSection = document.querySelector('.joke-section')
   const submit = document.querySelector('#search-form')
   const categoriesNodeList = document.querySelectorAll('.checkbox')
-  // const jokeSubmit = document.querySelector('#joke-submit')
   const localUrl = "http://localhost:3000/jokes"
 
   // create array of category elements on the DOM and initiate an empty array to apply categories
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     removeAllChildNodes(jokeSection)
 
-    const search = document.querySelector('#search').value
+    let search = document.querySelector('#search').value
     
     // Fetch from API
     fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
@@ -72,7 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         createJokeCard(idArr[randomId])
       }
     })
-    submit.reset()
+    
+    // search = '' will not work, unclear as to why
+    document.querySelector('#search').value = ''
+    
   })
 
   // Creates joke cards that have the type 'single'
