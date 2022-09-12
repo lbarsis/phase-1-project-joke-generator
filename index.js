@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
+
+      // jokeObjs.forEach(jokeObj => console.log(jokeObj))
       // Implement at least one joke from the local database into the results
       let randomId = Math.floor(Math.random() * jokeObjs.length) + 1
       let idArr = []
@@ -60,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (categories.length === 0 && search.length === 0 && jokeObj.id === randomId) {
           createJokeCard(jokeObj)
           // If parameters are entered
-        } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0)){
-            idArr.push(jokeObj)
+        } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0 && categories.length === 0)){
+          idArr.push(jokeObj)
         } 
       })
 
@@ -169,4 +171,5 @@ document.addEventListener('DOMContentLoaded', () => {
       parent.removeChild(parent.firstChild);
     }
   }
+
 })
