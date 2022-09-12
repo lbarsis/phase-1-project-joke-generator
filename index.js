@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
   })
 
-  // Creates joke cards that have the type 'single'
+  // Creates joke cards based on type of joke
   const createJokeCard = (jokeObj) => {
     const jokeContainer = document.createElement('div')
     const jokeContent = document.createElement('div')
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     element.style.cursor = "pointer";
   }
 
-    // Event listener that hides the form
+  // Event listener that shows and hides the add joke form
   addJokeButton.addEventListener('click', () => {
     addJoke = !addJoke;
     if (addJoke) {
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
+      parent.removeChild(parent.firstChild);
     }
   }
 })
