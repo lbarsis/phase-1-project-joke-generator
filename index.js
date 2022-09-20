@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Initiate all variables
   let addJoke = false
   const addJokeForm = document.querySelector('#add-joke-form')
   const addJokeButton = document.querySelector('#add-joke-button')
@@ -9,20 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const categoriesNodeList = document.querySelectorAll('.checkbox')
   const localUrl = "http://localhost:3000/jokes"
 
-  // create array of category elements on the DOM and initiate an empty array to apply categories
   let categoriesArray = [...categoriesNodeList]
   let categories = []
   let urlCategories = 'any'
 
-  // Add event listener to all categories and apply them to the format accepted by the API (urlCategories)
   for (let category of categoriesArray) {
     category.addEventListener('click', () => {
       const index = categories.indexOf(category.value)
       categories.includes(category.value) ? categories.splice(index,1) : categories.push(category.value) 
       urlCategories = categories.join(',')
 
-      // this if statement changes the urlCategories back to it's initial state if the user
-      // checks off categories then decides to remove them
       if (categories.length === 0) {
         urlCategories = 'any'
       }
@@ -30,15 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }
 
-  // Event listener that searches for jokes in the API and local databases
   submit.addEventListener('submit', e => {
     e.preventDefault()
 
     removeAllChildNodes(jokeSection)
 
     let search = document.querySelector('#search').value
-    
-    // Fetch from API
+
     fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
     .then(resp => resp.json())
     .then(jokeObjs => {
@@ -48,38 +41,30 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Sorry, no jokes were found in the API. You may see one from the local database if the criteria matches.')
     })
 
-    // Fetch from local database
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
 
-      // jokeObjs.forEach(jokeObj => console.log(jokeObj))
-      // Implement at least one joke from the local database into the results
       let randomId = Math.floor(Math.random() * jokeObjs.length) + 1
       let idArr = []
       jokeObjs.forEach(jokeObj => {
-        // If no parameters ar entered
         if (categories.length === 0 && search.length === 0 && jokeObj.id === randomId) {
           createJokeCard(jokeObj)
-          // If parameters are entered
         } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0 && categories.length === 0)){
           idArr.push(jokeObj)
         } 
       })
 
-      // generate a random joke from the list that meets the filter criteria 
       if (idArr.length > 0) {
         randomId = Math.floor(Math.random() * idArr.length)
         createJokeCard(idArr[randomId])
       }
     })
-    
-    // search = '' will not work, unclear as to why
+
     document.querySelector('#search').value = ''
     
   })
 
-  // Creates joke cards based on type of joke
   const createJokeCard = (jokeObj) => {
     const jokeContainer = document.createElement('div')
     const jokeContent = document.createElement('div')
@@ -108,7 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
     jokeSection.appendChild(jokeContainer)
   }
 
-  // Adds jokes to the local database 
   const submitData = (e) => {
     e.preventDefault()
     const submitCategory = document.querySelector('#submit-category').value
@@ -144,13 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     addJokeForm.reset()
   }
 
-  // changes cursor to pointer
   const mouseOver = (element) => {
-    // element.style.color = "darkgray";
     element.style.cursor = "pointer";
   }
 
-  // Event listener that shows and hides the add joke form
   addJokeButton.addEventListener('click', () => {
     addJoke = !addJoke;
     if (addJoke) {
@@ -165,11 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
   addJokeButton.addEventListener('mouseover', mouseOver(addJokeButton))
   addJokeForm.addEventListener('submit', submitData)
 
-  // source: -----> https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
   function removeAllChildNodes(parent) {
     while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
     }
   }
-
 })
