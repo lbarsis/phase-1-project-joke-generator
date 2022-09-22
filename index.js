@@ -45,11 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(resp => resp.json())
     .then(jokeObjs => {
 
-      let randomId = Math.floor(Math.random() * jokeObjs.length) + 1
+      let randomId = Math.floor(Math.random() * jokeObjs.length)
       let idArr = []
       jokeObjs.forEach(jokeObj => {
-        if (categories.length === 0 && search.length === 0 && jokeObj.id === randomId) {
-          createJokeCard(jokeObj)
+        if (categories.length === 0 && search.length === 0) {
+          createJokeCard(jokeObjs[randomId])
         } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0 && categories.length === 0)){
           idArr.push(jokeObj)
         } 
