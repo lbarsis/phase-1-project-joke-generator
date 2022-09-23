@@ -271,6 +271,22 @@
         "explicit": false
       },
       "id": 17
+    },
+    {
+      "category": "pun",
+      "joke": "Unique JOke",
+      "type": "single",
+      "lang": "en",
+      "safe": true,
+      "flags": {
+        "nsfw": false,
+        "religious": false,
+        "political": false,
+        "racist": false,
+        "sexist": false,
+        "explicit": false
+      },
+      "id": 18
     }
   ]
 }

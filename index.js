@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
-
+      console.log(jokeObjs)
       let randomId = Math.floor(Math.random() * jokeObjs.length)
       let idArr = []
       jokeObjs.forEach(jokeObj => {
@@ -60,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createJokeCard(idArr[randomId])
       }
     })
-
     document.querySelector('#search').value = ''
-    
   })
 
   const createJokeCard = (jokeObj) => {
@@ -128,8 +126,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addJokeForm.reset()
   }
 
-  const mouseOver = (element) => {
-    element.style.cursor = "pointer";
+  const mouseOver = (event) => {
+    event.target.style.cursor = "pointer";
   }
 
   addJokeButton.addEventListener('click', () => {
@@ -143,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  addJokeButton.addEventListener('mouseover', mouseOver(addJokeButton))
+  addJokeButton.addEventListener('mouseover', mouseOver)
   addJokeForm.addEventListener('submit', submitData)
 
   function removeAllChildNodes(parent) {
@@ -152,3 +150,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 })
+
