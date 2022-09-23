@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     removeAllChildNodes(jokeSection)
 
-    let search = document.querySelector('#search').value
+    let search = document.querySelector('#search').value.toLowerCase()
 
     fetch(`${baseUrl}/${urlCategories}?safe-mode&contains=${search}&amount=9`)
     .then(resp => resp.json())
@@ -44,13 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(localUrl)
     .then(resp => resp.json())
     .then(jokeObjs => {
-      console.log(jokeObjs)
       let randomId = Math.floor(Math.random() * jokeObjs.length)
       let idArr = []
       jokeObjs.forEach(jokeObj => {
+        let lowerCaseJoke = jokeObj.joke.toLowerCase()
         if (categories.length === 0 && search.length === 0) {
           createJokeCard(jokeObjs[randomId])
-        } else if((categories.includes(jokeObj.category) && jokeObj.joke.includes(search)) || (jokeObj.joke.includes(search) && search.length !== 0 && categories.length === 0)){
+        } else if((categories.includes(jokeObj.category) && lowerCaseJoke.includes(search)) || (lowerCaseJoke.includes(search) && search.length !== 0 && categories.length === 0)){
           idArr.push(jokeObj)
         } 
       })
